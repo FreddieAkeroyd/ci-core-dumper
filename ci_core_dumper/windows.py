@@ -157,9 +157,9 @@ def dump():
         lckfile = logfile+'.lck'
         arch = os.environ.get('PLATFORM', 'x64').lower()
         gdb = 'gdb'
-        if platform == 'x86':
+        if arch == 'x86':
             gdb = r'C:\msys64\mingw32\bin\gdb.exe'
-        if platform == 'x64':
+        if arch == 'x64':
             gdb = r'C:\msys64\mingw64\bin\gdb.exe'
 
         with open(lckfile, 'w') as LCK, open(logfile, 'w') as LOG:
