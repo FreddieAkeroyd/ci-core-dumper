@@ -184,7 +184,7 @@ q
            
                 cmd = [
                     gdb,
-                    '--pid=%d'.format(args.pid),
+                    '--pid={}'.format(args.pid),
                     '--nx', '--nw', '--batch', # no .gitinit, no UI, no interactive
                     '-ex', 'set pagination 0',
                     '-ex', 'thread apply all bt',
