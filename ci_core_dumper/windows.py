@@ -175,17 +175,14 @@ lm
 q
 ''')
 
-                cmd = [
-                    args.cdb,
-                    '-p', args.pid,
-                    '-e', args.event,
-                    #'-netsyms', 'no',
-                    '-lines',
-                    '-g', '-G',
-                    '-cf', cdbfile,
-                    #'-c', 'lm;~* kv n;q;',
-                ]
 
+                cmd = [
+                    'gdb',
+                    '--pid=%d'.format(args.pid),
+                    '--nx', '--nw', '--batch', # no .gitinit, no UI, no interactive
+                    '-ex', 'set pagination 0',
+                    '-ex', 'thread apply all bt',
+                ]
                 _log.debug('exec: %s', cmd)
                 LOG.flush()
 
