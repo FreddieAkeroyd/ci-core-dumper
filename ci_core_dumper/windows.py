@@ -155,6 +155,11 @@ def dump():
         cdbfile = '{}.{}.cdb'.format(dtime, args.pid)
         logfile  = '{}.{}.txt'.format(dtime, args.pid)
         lckfile = logfile+'.lck'
+        gdb = 'gdb'
+        if 'win32-x86-mingw' in os.environ['EPICS_HOST_ARCH']:
+            gdb = r'C:\msys64\mingw32\bin\gdb.exe'
+        if 'windows-x64-mingw' in os.environ['EPICS_HOST_ARCH']:
+            gdb = r'C:\msys64\mingw64\bin\gdb.exe'
 
         with open(lckfile, 'w') as LCK, open(logfile, 'w') as LOG:
             LOG.write('PID: {}\n'.format(args.pid))
@@ -175,9 +180,9 @@ lm
 q
 ''')
 
-
+           
                 cmd = [
-                    'gdb',
+                    gdb,
                     '--pid=%d'.format(args.pid),
                     '--nx', '--nw', '--batch', # no .gitinit, no UI, no interactive
                     '-ex', 'set pagination 0',
