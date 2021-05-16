@@ -155,7 +155,7 @@ def dump():
         cdbfile = '{}.{}.cdb'.format(dtime, args.pid)
         logfile  = '{}.{}.txt'.format(dtime, args.pid)
         lckfile = logfile+'.lck'
-        platform = os.environ['PLATFORM'].lower() # only if on appyeyor, platform as specified in appveyor.yml
+        arch = os.environ.get('PLATFORM', 'x64').lower()
         gdb = 'gdb'
         if platform == 'x86':
             gdb = r'C:\msys64\mingw32\bin\gdb.exe'
